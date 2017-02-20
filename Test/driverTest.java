@@ -10,6 +10,9 @@ import org.mockito.*;
 public class driverTest {
 	
 	@Test 
+	// Test the getRandomIndex() function in driver class
+	// Give the max value for random integer and
+	// verify the returned value is within boundary.
 	public void testGetRandomIndex() {
 		CityMap city = Mockito.mock(CityMap.class);
 		driver testDriver = new driver(city,0, new Random());
@@ -21,11 +24,12 @@ public class driverTest {
 	}
 	
 	@Test
-	// Given a current location, check advancement is valid
+	// Test the advance() function in driver class
 	// Mock the random class and stub the nextInt function
 	// Assure the driver advance to a valid next location
 	public void testAdvanceWithValidNextLocation() {
-		location testCurrLoc = new location("Presby", new String[]{"Fourth Ave.","Bill St."}, new String[]{"Union","Sennott"});
+		location testCurrLoc = new location("Presby", new String[]{"Fourth Ave.","Bill St."}, 
+						    new String[]{"Union","Sennott"});
 		Random r = Mockito.mock(Random.class);
 		driver testDriver = new driver(new CityMap(),0,r);
 
@@ -36,11 +40,12 @@ public class driverTest {
 	}
 	
 	@Test
-	// Given a current place, check advancement to outside city
+	// Test the advance() function in driver class
 	// Mock the random class and stub the nextInt function
 	// Assure the driver's next location is null since he has gone outside city
 	public void testAdvanceWithNullNextLocation() {
-		location testCurrLoc = new location("Union",  new String[]{"Fourth Ave.","Phil St."}, new String[]{"Philadelphia","Hillman"});
+		location testCurrLoc = new location("Union",  new String[]{"Fourth Ave.","Phil St."}, 
+						    new String[]{"Philadelphia","Hillman"});
 		Random r = Mockito.mock(Random.class);
 		driver testDriver = new driver(new CityMap(),0,r);
 		
@@ -50,9 +55,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the getStartLoc() function in driver class
+	// Mock the random class and stub the nextInt function 
 	// Generate a valid random starting location
-	// Mock the random class and stub the nextInt function
-	// Verify 
 	public void testGetStartingLocation() {
 		Random r = Mockito.mock(Random.class);
 		driver testDriver = new driver(new CityMap(),0,r);
@@ -64,6 +69,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the getDriverId() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the driver id returned is the same as the arg in constructor
 	public void testGetDriverId(){
 		CityMap city = Mockito.mock(CityMap.class);
 		Random r = Mockito.mock(Random.class);
@@ -73,6 +81,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the getSennottCount() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the sennott count is 0 for an initialized driver class
 	public void testGetSennottCount(){
 		CityMap city = Mockito.mock(CityMap.class);
 		Random r = Mockito.mock(Random.class);
@@ -82,6 +93,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the increaseSennottCount() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the sennott count is 2 after the increaseSennottCount() is called twice
 	public void testIncreaseSennottCount(){
 		CityMap city = Mockito.mock(CityMap.class);
 		Random r = Mockito.mock(Random.class);
@@ -93,8 +107,12 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the traverse() function in driver class
+	// Mock the random class and stub the nextInt function so that 
+	// the path is Union -> Philadelphia via Fourth Ave.
+	// Verify the path.
 	public void testTraverse(){
-	    ByteArrayOutputStream output = new ByteArrayOutputStream();
+	    	ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
 		
 		Random r = Mockito.mock(Random.class);
@@ -111,6 +129,9 @@ public class driverTest {
 	}
 	
 	@Test 
+	// Test the toString() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the path string when ("Union", "Hillman", "Phil St.") is passed
 	public void testToStringWithinCity(){
 		CityMap city = Mockito.mock(CityMap.class);
 		Random r = Mockito.mock(Random.class);
@@ -121,6 +142,9 @@ public class driverTest {
 	}
 	
 	@Test 
+	// Test the toString() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the path string when ("Union", "Philadelphia", "Fourth Ave.") is passed
 	public void testToStringOutsideCity(){
 		CityMap city = Mockito.mock(CityMap.class);
 		Random r = Mockito.mock(Random.class);
@@ -132,6 +156,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the printSennottCount() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the sennott string when sennott_count is 0
 	public void testPrintSennottCount0(){
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
@@ -148,6 +175,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the printSennottCount() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the sennott string when sennott_count is 1
 	public void testPrintSennottCount1(){
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
@@ -164,6 +194,9 @@ public class driverTest {
 	}
 	
 	@Test
+	// Test the printSennottCount() function in driver class
+	// Mock the random class and CityMap class 
+	// Verify the sennott string when sennott_count is 3
 	public void testPrintSennottCount3(){
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
@@ -178,7 +211,7 @@ public class driverTest {
 		
 		final String res = output.toString();
 		String target = "Driver 0 met with Professor Laboon 3 time(s).\n"+
-						"Wow, that driver needed lots of CS help!\n";
+				"Wow, that driver needed lots of CS help!\n";
 		assertEquals(res, target);
 	}
 }

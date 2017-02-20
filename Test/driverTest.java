@@ -125,7 +125,8 @@ public class driverTest {
 		final String res = output.toString();
 		String target = "Driver 0 heading from Union to Outside City via Fourth Ave.\n" + 
 						"Driver 0 has gone to Philadelphia!\n";
-		assertEquals(target,res);
+		boolean equal = res.replaceAll("\\s+","").equalsIgnoreCase(target.replaceAll("\\s+",""));
+		assertTrue(equal);
 	}
 	
 	@Test 
@@ -171,7 +172,8 @@ public class driverTest {
 		final String res = output.toString();
 		String target = "Driver 0 met with Professor Laboon 0 time(s).\n"+
 						"That student missed out!\n";
-		assertEquals(res, target);
+		boolean equal = res.replaceAll("\\s+","").equalsIgnoreCase(target.replaceAll("\\s+",""));
+		assertTrue(equal);
 	}
 	
 	@Test
@@ -190,7 +192,8 @@ public class driverTest {
 		
 		final String res = output.toString();
 		String target = "Driver 0 met with Professor Laboon 1 time(s).\n";
-		assertEquals(res, target);
+		boolean equal = res.replaceAll("\\s+","").equalsIgnoreCase(target.replaceAll("\\s+",""));
+		assertTrue(equal);
 	}
 	
 	@Test
@@ -212,6 +215,7 @@ public class driverTest {
 		final String res = output.toString();
 		String target = "Driver 0 met with Professor Laboon 3 time(s).\n"+
 				"Wow, that driver needed lots of CS help!\n";
-		assertEquals(res, target);
+		boolean equal = res.replaceAll("\\s+","").equalsIgnoreCase(target.replaceAll("\\s+",""));
+		assertTrue(equal);
 	}
 }
